@@ -32,7 +32,7 @@ void Map::setUpCollider()
 			int code = mapData[i][j];
 
 			SDL_Rect temp = { j * ts, i * ts, ts, ts };
-			if (code == OPEN)
+			if (code == OPEN || code == BOMBERMAN || code == ENEMY)
 			{
 				temp.w = 0;
 				temp.h = 0;
@@ -52,7 +52,9 @@ void Map::draw()
 	{
 		for (int j = 0; j < mapData[i].size(); j++)
 		{
-			src = tileSrc[ mapData[ i ][ j ] ];
+			int code = mapData[i][j];
+			code = code == BOMBERMAN || code == ENEMY ? OPEN : code;
+			src = tileSrc[ code ];
 			pos = { j * ts,  i * ts, ts, ts };
 			//SDL_Rect temp = mapCollider[i][j];
 			//cout << temp.x << " " << temp.y << " " << temp.w << " "  <<  temp.h << endl;

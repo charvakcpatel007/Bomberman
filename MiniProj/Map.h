@@ -15,20 +15,22 @@ public:
 	static const int OPEN = 0;
 	static const int BRICK = 1;
 	static const int BLOCK = 2;
+	static const int BOMBERMAN = 3;
+	static const int ENEMY = 4;
 	
 	vector<SDL_Rect> tileSrc;
 	int rows;
 	int coloumns;
 	int tileSize;
 
-	int startRow;
-	int startColoumn;
+	int noOfEnemies;
+	
 	vector< vector<int> > mapData;
 	vector< vector<SDL_Rect> > mapCollider;
-	void draw();
+	virtual void draw();
 	Map();
 	void setUpCollider();
-	~Map();
+	virtual ~Map();
 	int tileSizeDest;
 private:
 

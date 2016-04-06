@@ -30,17 +30,13 @@ void FileHandler::fillFileNames(const char* path, vector<string> &files)
 	}
 }
 
-pair<int,int> FileHandler::fillVec2D( const char* path, vector< vector<int> > &A  )
+void FileHandler::fillVec2D( const char* path, vector< vector<int> > &A  )
 {
 	ifstream curFile( path );
 
 	int r, c;
 	curFile >> r;
 	curFile >> c;
-	int startrow;
-	int startcoloumn;
-	curFile >> startrow;
-	curFile >> startcoloumn;
 
 	for (int i = 0; i < r; i++)
 	{
@@ -51,5 +47,4 @@ pair<int,int> FileHandler::fillVec2D( const char* path, vector< vector<int> > &A
 		} 
 	}
 	curFile.close();
-	return make_pair( startrow, startcoloumn );
 }

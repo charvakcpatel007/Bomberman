@@ -30,11 +30,12 @@ MainGame::MainGame()
 	bomberman.setImage("res//george.png");
 	e.setRenderer(renderer);
 	e.setImage("res//spritesheetBalloon.png");
-
 	loadMaps();
 	
+	
 	bomberman.init(maps[0]);
-	e.init(maps[0]);
+
+	//e.init(maps[0]);
 }
 
 void MainGame::loadMaps()
@@ -49,9 +50,7 @@ void MainGame::loadMaps()
 		curMap.tileSizeDest = MainGame::tileSizeDest;
 		curMap.setRenderer( renderer );
 		curMap.setImage( "res//sheet.png" );
-		pair<int,int> p = FileHandler::fillVec2D( finalPath.c_str() ,curMap.mapData );
-		curMap.startRow = p.first;
-		curMap.startColoumn = p.second;
+		FileHandler::fillVec2D( finalPath.c_str() ,curMap.mapData );
 		curMap.setUpCollider();
 	}
 
@@ -69,8 +68,10 @@ void MainGame::run()
 
 void MainGame::update()
 {
+	
 	bomberman.update();
-	e.update();
+	
+	//e.update();
 }
 
 void MainGame::render()
@@ -82,7 +83,7 @@ void MainGame::render()
 	maps[ 0 ].draw();
 	//SDL_RenderDrawRect(renderer, &bomberman.pos);
 	bomberman.draw();
-	e.draw();
+	//e.draw();
 }
 
 

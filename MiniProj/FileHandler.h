@@ -10,6 +10,6 @@ public:
 	FileHandler();
 	~FileHandler();
 	static void fillFileNames(const char* path, vector<string> &files);
-	static pair<int,int> fillVec2D( const char* path, vector< vector<int> > &A );
+	static void fillVec2D( const char* path, vector< vector<int> > &A );
 };
 

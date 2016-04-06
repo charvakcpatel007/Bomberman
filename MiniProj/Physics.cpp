@@ -59,7 +59,6 @@ bool Physics::checkCollision(const vector<vector<SDL_Rect>>& map, const SDL_Rect
 			if (map[i][j].w == 0)continue;
 			if (Physics::checkCollision(pos, map[i][j]))
 			{
-				cout << endl;
 				return true;
 			}
 		}
