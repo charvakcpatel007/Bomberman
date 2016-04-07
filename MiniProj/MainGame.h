@@ -8,7 +8,7 @@
 #include "Bomberman.h"
 #include "Map.h"
 #include "FileHandler.h"
-#include "Enemy.h"
+#include "EnemyColletion.h"
 using namespace std;
 
 enum GameState
@@ -46,6 +46,6 @@ private:
 	float desiredTime;
 	bool vsync;
 	Bomberman bomberman;
-	Enemy e;
+	EnemyColletion enemies;
 };
 

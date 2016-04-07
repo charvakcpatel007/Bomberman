@@ -7,15 +7,15 @@ Map::Map()
 
 	tileSize = 32;
 	{
-		SDL_Rect r = { 2 * tileSize, 1 * tileSize, tileSize, tileSize };
+		SDL_Rect r = { 2 * tileSize, 1 * tileSize, tileSize, tileSize };// Open Tile Image
 		tileSrc.push_back(r);
 	}
 	{
-		SDL_Rect r = { 0 * tileSize, 1 * tileSize, tileSize, tileSize };
+		SDL_Rect r = { 0 * tileSize, 1 * tileSize, tileSize, tileSize };// Brick Tile Image
 		tileSrc.push_back(r);
 	}
 	{
-		SDL_Rect r = { 5 * tileSize, 2 * tileSize, tileSize, tileSize };
+		SDL_Rect r = { 5 * tileSize, 2 * tileSize, tileSize, tileSize };//Block TIle Images
 		tileSrc.push_back(r);
 	}
 }

@@ -10,5 +10,7 @@ public:
 	virtual void init(Map &m) override;
 	void update() override;
 	~Enemy();
+	int startC;
+	int startR;
 };
 

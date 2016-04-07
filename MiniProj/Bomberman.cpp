@@ -9,27 +9,30 @@ Bomberman::Bomberman()
 	magnificationOffset = 20;
 }
 
-
+pair<int, int> Bomberman::getPositionFromMap()
+{
+	pair<int, int> p;
+	vector< vector<int> > &d = map->mapData;
+	for (int i = 0; i < d.size(); i++)
+	{
+		for (int j = 0; j < d[i].size(); j++)
+		{
+			if (d[i][j] == Map::BOMBERMAN)
+			{
+				p.first = i;//First is for Row
+				p.second = j;//Second is for coloumn
+			}
+		}
+	}
+	return p;
+}
 
 void Bomberman::init( Map& m )
 {
 	map = &m;
-	int startR = 0;
-	int startC = 0;
-	{
-		vector< vector<int> > &d = m.mapData;
-		for (int i = 0; i < d.size(); i++ )
-		{
-			for (int j = 0; j < d[i].size(); j++ )
-			{
-				if ( d[ i ][ j ] ==  Map::BOMBERMAN )
-				{
-					startR = i;
-					startC = j;
-				}
-			}
-		}
-	}
+	pair<int,int> p = getPositionFromMap();
+	int startR = p.first;
+	int startC = p.second;
 	srcTileX = 48;
 	srcTileY = 48;
 	noOfFrames = 4;
@@ -55,7 +58,8 @@ void Bomberman::init( Map& m )
 	curPosition = 0;
 
 	moveSpeed = 3;
-	collideroffset = 13;
+	collideroffset = 15;
+	magnificationOffset = 20;
 	pos.x = startC * tileSizeDest;
 	pos.y = startR * tileSizeDest;
 	pos.x += collideroffset;
@@ -113,3 +117,5 @@ void Bomberman::update()
 Bomberman::~Bomberman()
 {
 }
+
+

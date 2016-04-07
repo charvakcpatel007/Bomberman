@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Physics.h"
 
 
 Enemy::Enemy()
@@ -21,21 +22,29 @@ void Enemy::init(Map& m)
 
 	rate = 2.0f;
 	curPosition = 0;
-	
+	isPlaying = true;
 	moveSpeed = 3;
 	collideroffset = 15;
-	pos.x = collideroffset + 10;
-	pos.y = collideroffset + 10;
+	magnificationOffset = 20;
+	pos.x = startC * tileSizeDest;
+	pos.y = startR * tileSizeDest;
+	pos.x += collideroffset;
+	pos.y += collideroffset;
 	pos.w = tileSizeDest - collideroffset * 2;
 	pos.h = tileSizeDest - collideroffset * 2;
-	isPlaying = true;
-	magnificationOffset = 21;
 }
 
 void Enemy::update()
 {
+	
 	Animation::update();
+	SDL_Rect previousState = pos;
+	if (Physics::checkCollision(map->mapCollider, pos))
+	{
+		pos = previousState;
+	}
 }
+
 
 Enemy::~Enemy()
 {

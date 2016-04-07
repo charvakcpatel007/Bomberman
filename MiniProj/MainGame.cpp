@@ -24,18 +24,18 @@ MainGame::MainGame()
 	desiredTime = 1000.0f / desiredfps;
 	gameState = GameState::PLAY;
 	bomberman.tileSizeDest = MainGame::tileSizeDest;
-	e.tileSizeDest = MainGame::tileSizeDest;
+	enemies.tileSizeDest = MainGame::tileSizeDest;
 
 	bomberman.setRenderer(renderer);
 	bomberman.setImage("res//george.png");
-	e.setRenderer(renderer);
-	e.setImage("res//spritesheetBalloon.png");
+	enemies.setRenderer(renderer);
+	enemies.setImage("res//spritesheetBalloon.png");
 	loadMaps();
 	
 	
 	bomberman.init(maps[0]);
+	enemies.init(maps[0]);
 
-	//e.init(maps[0]);
 }
 
 void MainGame::loadMaps()
@@ -70,7 +70,7 @@ void MainGame::update()
 {
 	
 	bomberman.update();
-	
+	enemies.update();
 	//e.update();
 }
 
@@ -83,6 +83,7 @@ void MainGame::render()
 	maps[ 0 ].draw();
 	//SDL_RenderDrawRect(renderer, &bomberman.pos);
 	bomberman.draw();
+	enemies.draw();
 	//e.draw();
 }
 

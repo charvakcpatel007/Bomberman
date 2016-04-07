@@ -11,5 +11,7 @@ public:
 	virtual void init(Map &m) override;
 	virtual void update() override;
 	~Bomberman();
+private:
+	pair<int,int> getPositionFromMap();
 };
 
