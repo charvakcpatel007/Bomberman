@@ -18,5 +18,6 @@ public:
 	SDL_Renderer* renderer;
 	SDL_Texture* image;
 private:
+protected:
 };
 

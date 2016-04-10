@@ -15,6 +15,7 @@ void EnemyColletion::addEnemy(int row, int coloumn)
 	e.setRenderer(renderer);
 	e.setImage(imagePath);
 	e.init( *map );
+	e.drawOffsetPtr = drawOffsetPtr;
 
 }
 

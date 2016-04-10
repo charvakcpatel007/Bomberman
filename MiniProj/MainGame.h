@@ -34,6 +34,9 @@ public:
 	SDL_Renderer* renderer;
 	vector< Map > maps;
 	int tileSizeDest = 10;
+	pair<int, int> drawOffset;
+	void updateOffset();
+	pair<int, int> dimension;
 
 private:
 	SDL_Window* window;

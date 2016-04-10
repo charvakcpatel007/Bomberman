@@ -112,7 +112,17 @@ void Bomberman::update()
 	}
 }
 
-
+void Bomberman::draw()
+{
+	SDL_Rect intermediatepos = pos;
+	intermediatepos.x = screenDimension.first / 2;
+	intermediatepos.y = screenDimension.second / 2;
+	intermediatepos.x -= magnificationOffset;
+	intermediatepos.y -= magnificationOffset;
+	intermediatepos.h += magnificationOffset * 2;
+	intermediatepos.w += magnificationOffset * 2;
+	SDL_RenderCopy(renderer, image, isPlaying ? &srcFrameRects[strip][getCurFrame()] : &srcFrameRects[strip][0], &intermediatepos);
+}
 
 Bomberman::~Bomberman()
 {

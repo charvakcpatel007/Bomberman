@@ -6,16 +6,20 @@
 #include "Image.h"
 #include "Animation.h"
 #include "Bomberman.h"
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
 SDL_Rect r;
 
 MainGame::MainGame()
 {
+	srand(time(0));
 	tileSizeDest = 70;
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
-	window = SDL_CreateWindow("MP3", 20, 30, 1250, 680, SDL_WINDOW_SHOWN);
+	dimension = make_pair( 1250, 680 );
+	window = SDL_CreateWindow("MP3", 20, 30, dimension.first, dimension.second, SDL_WINDOW_SHOWN);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	vsync = true;
 	evnt = new SDL_Event();
@@ -28,14 +32,16 @@ MainGame::MainGame()
 
 	bomberman.setRenderer(renderer);
 	bomberman.setImage("res//george.png");
+	bomberman.screenDimension = dimension;
 	enemies.setRenderer(renderer);
 	enemies.setImage("res//spritesheetBalloon.png");
 	loadMaps();
-	
+	maps[0].drawOffsetPtr = &drawOffset;
+	enemies.drawOffsetPtr = &drawOffset;
 	
 	bomberman.init(maps[0]);
 	enemies.init(maps[0]);
-
+	
 }
 
 void MainGame::loadMaps()
@@ -45,7 +51,7 @@ void MainGame::loadMaps()
 	for (int i = 0; i < fn.size(); i++)
 	{
 		string finalPath = "maps//" + fn[i];
-		maps.push_back( Map() );
+		maps.emplace_back( );
 		Map &curMap = maps[maps.size() - 1];
 		curMap.tileSizeDest = MainGame::tileSizeDest;
 		curMap.setRenderer( renderer );
@@ -54,6 +60,11 @@ void MainGame::loadMaps()
 		curMap.setUpCollider();
 	}
 
+}
+
+void MainGame::updateOffset()
+{
+	drawOffset = make_pair( dimension.first / 2 - bomberman.pos.x, dimension.second / 2 - bomberman.pos.y );
 }
 
 void MainGame::loadRes()
@@ -71,6 +82,7 @@ void MainGame::update()
 	
 	bomberman.update();
 	enemies.update();
+	updateOffset();
 	//e.update();
 }
 

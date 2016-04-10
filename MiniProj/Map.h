@@ -32,6 +32,7 @@ public:
 	void setUpCollider();
 	virtual ~Map();
 	int tileSizeDest;
+	pair<int, int> *drawOffsetPtr;
 private:
 
 };

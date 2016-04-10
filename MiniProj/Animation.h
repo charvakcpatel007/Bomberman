@@ -19,7 +19,7 @@ public:
 	Animation( SDL_Renderer*  r, const char* path);
 	virtual ~Animation();
 
-	void draw();
+	virtual void draw();
 	void setImage(const char* path);
 	void setRenderer( SDL_Renderer* r);
 	virtual void update();		
@@ -38,7 +38,7 @@ public:
 	bool isPlaying;
 	int tileSizeDest;
 	int magnificationOffset;
-private:
+protected:
 	SDL_Renderer* renderer;
 	SDL_Texture* image;
 };

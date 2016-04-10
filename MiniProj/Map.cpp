@@ -55,7 +55,7 @@ void Map::draw()
 			int code = mapData[i][j];
 			code = code == BOMBERMAN || code == ENEMY ? OPEN : code;
 			src = tileSrc[ code ];
-			pos = { j * ts,  i * ts, ts, ts };
+			pos = { j * ts + drawOffsetPtr->first,  i * ts + drawOffsetPtr->second, ts, ts };
 			//SDL_Rect temp = mapCollider[i][j];
 			//cout << temp.x << " " << temp.y << " " << temp.w << " "  <<  temp.h << endl;
 

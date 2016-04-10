@@ -14,6 +14,7 @@ public:
 	void setRenderer(SDL_Renderer* r);
 	SDL_Renderer* renderer;
 	const char* imagePath;
+	pair<int, int> *drawOffsetPtr;
 	Map* map;
 private:
 	void addEnemy( int row, int coloumn );
