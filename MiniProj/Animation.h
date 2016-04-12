@@ -38,8 +38,10 @@ public:
 	bool isPlaying;
 	int tileSizeDest;
 	int magnificationOffset;
+	pair<int, int> *drawOffsetPtr;
 protected:
 	SDL_Renderer* renderer;
+
 	SDL_Texture* image;
 };
 

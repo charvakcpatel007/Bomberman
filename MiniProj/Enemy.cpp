@@ -102,17 +102,7 @@ void Enemy::update()
 	turnRandom();
 }
 
-void Enemy::draw()
-{
-	SDL_Rect intermediatepos = pos;
-	intermediatepos.x -= magnificationOffset;
-	intermediatepos.y -= magnificationOffset;
-	intermediatepos.x += drawOffsetPtr->first;
-	intermediatepos.y += drawOffsetPtr->second;
-	intermediatepos.h += magnificationOffset * 2;
-	intermediatepos.w += magnificationOffset * 2;
-	SDL_RenderCopy(renderer, image, isPlaying ? &srcFrameRects[strip][getCurFrame()] : &srcFrameRects[strip][0], &intermediatepos);
-}
+
 
 Enemy::~Enemy()
 {

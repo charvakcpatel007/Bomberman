@@ -13,7 +13,6 @@ public:
 	virtual void init(Map &m) override;
 	void turnRandom();
 	void update() override;
-	void draw() override;
 	~Enemy();
 	int startC;
 	int startR;
@@ -21,7 +20,6 @@ public:
 	int turnChance;
 	int startTime;
 	int duration;
-	pair<int, int> *drawOffsetPtr;
 	pair<int,int> getLeft();
 	pair<int,int> getRight();
 private:

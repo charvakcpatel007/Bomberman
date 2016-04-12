@@ -10,23 +10,9 @@
 #include <cstdlib>
 using namespace std;
 
-SDL_Rect r;
-
 MainGame::MainGame()
 {
-	srand(time(0));
 	tileSizeDest = 70;
-	SDL_Init(SDL_INIT_EVERYTHING);
-	IMG_Init(IMG_INIT_PNG);
-	dimension = make_pair( 1250, 680 );
-	window = SDL_CreateWindow("MP3", 20, 30, dimension.first, dimension.second, SDL_WINDOW_SHOWN);
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	vsync = true;
-	evnt = new SDL_Event();
-	fpsTimer.start();
-	desiredfps = 60;
-	desiredTime = 1000.0f / desiredfps;
-	gameState = GameState::PLAY;
 	bomberman.tileSizeDest = MainGame::tileSizeDest;
 	enemies.tileSizeDest = MainGame::tileSizeDest;
 
@@ -41,7 +27,6 @@ MainGame::MainGame()
 	
 	bomberman.init(maps[0]);
 	enemies.init(maps[0]);
-	
 }
 
 void MainGame::loadMaps()
@@ -70,11 +55,6 @@ void MainGame::updateOffset()
 void MainGame::loadRes()
 {
 
-}
-
-void MainGame::run()
-{
-	gameLoop();
 }
 
 void MainGame::update()
@@ -117,23 +97,6 @@ void MainGame::processInput()
 			break;
 		case SDL_MOUSEMOTION:;
 		}
-	}
-}
-
-void MainGame::gameLoop()
-{
-	fpsTimer.stop();
-	while (gameState != GameState::QUIT)
-	{
-		fpsTimer.start();
-		processInput();
-		update();
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-		SDL_RenderClear(renderer);
-		render();
-		SDL_RenderPresent(renderer);
-		float x = desiredTime - fpsTimer.getTicks();
-		
 	}
 }
 
