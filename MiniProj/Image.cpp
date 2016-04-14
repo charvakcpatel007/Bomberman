@@ -27,6 +27,7 @@ Image::~Image()
 void Image::setImage( const char* path )
 {
 	image = IMG_LoadTexture(renderer, path);
+	cout << IMG_GetError() << endl;
 }
 
 void Image::setRenderer(SDL_Renderer* r)

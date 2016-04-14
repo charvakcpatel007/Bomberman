@@ -12,6 +12,7 @@ public:
 	virtual void update() override;
 	virtual void draw() override;
 	pair<int, int> screenDimension;
+	virtual void setDefaultSrcRect();
 	~Bomberman();
 private:
 	pair<int,int> getPositionFromMap();

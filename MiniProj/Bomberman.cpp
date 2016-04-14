@@ -7,6 +7,7 @@ Bomberman::Bomberman()
 {
 	isPlaying = false;
 	magnificationOffset = 20;
+	Bomberman::setDefaultSrcRect();
 }
 
 pair<int, int> Bomberman::getPositionFromMap()
@@ -122,6 +123,11 @@ void Bomberman::draw()
 	intermediatepos.h += magnificationOffset * 2;
 	intermediatepos.w += magnificationOffset * 2;
 	SDL_RenderCopy(renderer, image, isPlaying ? &srcFrameRects[strip][getCurFrame()] : &srcFrameRects[strip][0], &intermediatepos);
+}
+
+void Bomberman::setDefaultSrcRect()
+{
+	src = { 0, 0, 48, 48 };
 }
 
 Bomberman::~Bomberman()

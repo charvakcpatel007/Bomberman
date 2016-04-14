@@ -6,6 +6,7 @@
 
 Enemy::Enemy()
 {
+	setDefaultSrcRect();
 }
 
 void Enemy::init(Map& m)
@@ -102,6 +103,10 @@ void Enemy::update()
 	turnRandom();
 }
 
+void Enemy::setDefaultSrcRect()
+{
+	src = { 0, 0, 76, 121 };
+}
 
 
 Enemy::~Enemy()

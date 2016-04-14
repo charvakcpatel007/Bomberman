@@ -9,6 +9,8 @@
 #include "Map.h"
 #include "FileHandler.h"
 #include "EnemyColletion.h"
+#include <SDL_ttf.h>
+#include "MouseHandler.h"
 
 enum GameState
 {
@@ -42,7 +44,9 @@ protected:
 	bool vsync;
 	SDL_Renderer* renderer;
 	int tileSizeDest = 10;
-	pair<int, int> drawOffset;
-	pair<int, int> dimension;
+	pair<int, int> drawOffset;// x offset first, y offset second
+	int drawoffsetSpeed;
+	pair<int, int> dimension;// width hight
+	TTF_Font* gFont;
 };
 

@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2_image-2.0.1\include;C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2_image-2.0.1\lib\x86;C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2_ttf\include;C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2_image-2.0.1\include;C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2_ttf\lib\x86;C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2_image-2.0.1\lib\x86;C:\Users\Admin\Desktop\MiniProj\MiniProj\deps\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -50,7 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -72,6 +72,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="BasicGame.cpp" />
     <ClCompile Include="Bomberman.cpp" />
+    <ClCompile Include="ClickableMap.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyColletion.cpp" />
     <ClCompile Include="FileHandler.cpp" />
@@ -80,13 +81,17 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapEditorMain.cpp" />
+    <ClCompile Include="MouseHandler.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="TextSprite.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BasicGame.h" />
     <ClInclude Include="Bomberman.h" />
+    <ClInclude Include="ClickableMap.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyColletion.h" />
     <ClInclude Include="FileHandler.h" />
@@ -94,7 +99,10 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapEditorMain.h" />
+    <ClInclude Include="MouseHandler.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="TextSprite.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

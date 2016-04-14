@@ -13,6 +13,7 @@ public:
 	virtual void init(Map &m) override;
 	void turnRandom();
 	void update() override;
+	void setDefaultSrcRect();
 	~Enemy();
 	int startC;
 	int startR;

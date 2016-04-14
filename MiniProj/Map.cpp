@@ -48,8 +48,10 @@ void Map::setUpCollider()
 void Map::draw()
 {
 	const int &ts = tileSizeDest;
+	
 	for (int i = 0; i < mapData.size(); i++)
 	{
+		
 		for (int j = 0; j < mapData[i].size(); j++)
 		{
 			int code = mapData[i][j];
@@ -65,6 +67,7 @@ void Map::draw()
 			//Image::draw();
 			SDL_RenderCopy(renderer, image, &src, &pos);
 			//SDL_RenderDrawRect(renderer, &mapCollider[ i ][ j ]);
+			
 		}
 	}
 }

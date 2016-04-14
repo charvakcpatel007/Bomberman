@@ -6,6 +6,9 @@ BasicGame::BasicGame()
 	srand(time(0));
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
+
+	TTF_Init();
+	gFont = TTF_OpenFont("res//comicbd.ttf", 70);
 	dimension = make_pair(1250, 680);
 	window = SDL_CreateWindow("MP3", 20, 30, dimension.first, dimension.second, SDL_WINDOW_SHOWN);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -15,6 +18,7 @@ BasicGame::BasicGame()
 	desiredfps = 60;
 	desiredTime = 1000.0f / desiredfps;
 	gameState = GameState::PLAY;
+	drawoffsetSpeed = 15;
 }
 
 
@@ -34,12 +38,12 @@ void BasicGame::gameLoop()
 	{
 		fpsTimer.start();
 		processInput();
+		updateOffset();
 		update();
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 		render();
 		SDL_RenderPresent(renderer);
 		float x = desiredTime - fpsTimer.getTicks();
-
 	}
 }
