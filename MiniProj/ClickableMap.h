@@ -16,10 +16,13 @@ public:
 	bool isMousePressed;
 	Image bomberman;
 	Image enemy;
+	void processHotkeyPress();
 	void setImage(const char* path) override;
 	bool isBombermanPresent;
 	void expandRow();
 	void expandColoumn();
+	void contractRow();
+	void contractColoumn();
 protected:
 	void setCurTile();
 	void highLightCurTile();

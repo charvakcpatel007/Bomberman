@@ -48,5 +48,7 @@ protected:
 	int drawoffsetSpeed;
 	pair<int, int> dimension;// width hight
 	TTF_Font* gFont;
+	bool isFullScreen;
+	bool isCamInLimit(pair<int, int> drawOffset, Map& curMap);
 };
 

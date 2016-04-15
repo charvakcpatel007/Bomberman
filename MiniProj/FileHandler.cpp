@@ -1,4 +1,5 @@
 #include "FileHandler.h"
+#include <ctime>
 
 
 FileHandler::FileHandler()
@@ -45,6 +46,31 @@ void FileHandler::fillVec2D( const char* path, vector< vector<int> > &A  )
 		{
 			curFile >> A[i][j];
 		} 
+	}
+	curFile.close();
+}
+
+void FileHandler::vec2DToFile(vector<vector<int>>& A)
+{
+	int r = A.size();
+	int c = A[0].size();
+	string fileName = "Map";
+	long long int t = time(0);
+	for (int i = 0; i < 5; i++ )
+	{
+		fileName.push_back('0' + t % 10);
+		t = t / 10;
+	}
+	fileName += ".txt";
+	ofstream curFile( fileName.c_str() );
+	curFile << r << " " << c << endl;
+	for (int i = 0; i < A.size(); i++ )
+	{
+		for (int j = 0; j < A[i].size(); j++ )
+		{
+			curFile << A[i][j] << " ";
+		}
+		curFile << endl;
 	}
 	curFile.close();
 }

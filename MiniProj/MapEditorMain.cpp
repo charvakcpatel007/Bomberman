@@ -13,6 +13,7 @@ MapEditorMain::MapEditorMain()
 	curMap.drawOffsetPtr = &drawOffset;
 	curMap.setUpCollider();
 	curMap.isMousePressed = false;
+	margin = 10;
 }
 
 
@@ -30,25 +31,52 @@ void MapEditorMain::update()
 	curMap.update();
 }
 
+
+
 void MapEditorMain::updateOffset()
 {
-	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
-	if (currentKeyStates[SDL_SCANCODE_UP])
+	/*const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+	if (currentKeyStates[SDL_SCANCODE_UP] || currentKeyStates[SDL_SCANCODE_W])
 	{
 		drawOffset.second += drawoffsetSpeed;
 	}
-	if (currentKeyStates[SDL_SCANCODE_DOWN])
+	if (currentKeyStates[SDL_SCANCODE_DOWN] || currentKeyStates[SDL_SCANCODE_S])
 	{
 		drawOffset.second -= drawoffsetSpeed;
 	}
-	if (currentKeyStates[SDL_SCANCODE_LEFT])
+	if (currentKeyStates[SDL_SCANCODE_LEFT] || currentKeyStates[SDL_SCANCODE_A])
 	{
 		drawOffset.first += drawoffsetSpeed;
 	}
-	if (currentKeyStates[SDL_SCANCODE_RIGHT])
+	if (currentKeyStates[SDL_SCANCODE_RIGHT] || currentKeyStates[SDL_SCANCODE_D])
 	{
 		drawOffset.first -= drawoffsetSpeed;
-	}	
+	}	*/
+	pair<int, int> curMousePos = MouseHandler::getMousePosition();
+	pair<int, int> preCamState = drawOffset;
+	if ( curMousePos.first <= 0 + margin )
+	{
+		drawOffset.first += drawoffsetSpeed;
+
+	}
+	else if ( curMousePos.first >= dimension.first - margin )
+	{
+		drawOffset.first -= drawoffsetSpeed;
+	}
+
+	if (curMousePos.second <= 0 + margin)
+	{
+		drawOffset.second += drawoffsetSpeed;
+	}
+	else if (curMousePos.second >= dimension.second - margin)
+	{
+		drawOffset.second -= drawoffsetSpeed;
+	}
+
+	if( !isCamInLimit( drawOffset, curMap ) )
+	{
+		drawOffset = preCamState;
+	}
 }
 
 void MapEditorMain::processInput()
@@ -59,13 +87,40 @@ void MapEditorMain::processInput()
 		switch (evnt.type)
 		{
 		case SDL_KEYDOWN:
-			if( evnt.key.keysym.scancode == SDL_SCANCODE_R )
+			if ( evnt.key.keysym.scancode == SDL_SCANCODE_F )
+			{
+				if ( isFullScreen )
+				{
+					isFullScreen = false;
+					SDL_SetWindowFullscreen(window, 0);
+					SDL_GetWindowSize(window, &dimension.first, &dimension.second);
+				}
+				else
+				{
+					isFullScreen = true;
+					dimension = make_pair( 1366, 768 );
+					SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+				}
+			}
+			if ( evnt.key.keysym.scancode == SDL_SCANCODE_G )
+			{
+				FileHandler::vec2DToFile(curMap.mapData);
+			}
+			if( evnt.key.keysym.scancode == SDL_SCANCODE_D )
 			{
 				curMap.expandColoumn();
 			}
-			else if ( evnt.key.keysym.scancode == SDL_SCANCODE_D )
+			else if ( evnt.key.keysym.scancode == SDL_SCANCODE_S )
 			{
 				curMap.expandRow();
+			}
+			else if (evnt.key.keysym.scancode == SDL_SCANCODE_W && curMap.mapData.size() > 3 )
+			{
+				curMap.contractRow();
+			}
+			else if (evnt.key.keysym.scancode == SDL_SCANCODE_A && curMap.mapData[ 0 ].size() > 3 )
+			{
+				curMap.contractColoumn();
 			}
 			break;
 		case SDL_QUIT:

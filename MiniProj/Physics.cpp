@@ -1,12 +1,12 @@
 #include "Physics.h"
 #include <iostream>
 
-void printRect(const SDL_Rect &r)
+void Physics::printRect(const SDL_Rect& r)
 {
 	printf("( %d, %d, %d, %d )", r.x, r.y, r.w, r.h);
 }
 
-void printA(const vector< vector<SDL_Rect>> &r)
+void Physics::printA(const vector< vector<SDL_Rect>> &r)
 {
 	for (int i = 0; i < r.size(); i++)
 	{
@@ -74,6 +74,34 @@ pair<int, int> Physics::getCellPosition( const SDL_Rect &pos, int tileSizeDest)/
 	ret.first = posX / tileSizeDest;
 	ret.second = posY / tileSizeDest;
 	return ret;
+}
+
+bool Physics::isSameOrIn(pair<int, int> l, pair<int, int> h)
+{
+	if ( l == h )
+	{
+		return true;
+	}
+	if ( l.first <= h.first && l.second >= h.second )
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Physics::isSameOrIn(const SDL_Rect& map, const SDL_Rect& cam)
+{
+	pair<int, int> x1 = make_pair(map.x, map.x + map.w);
+	pair<int, int> x2 = make_pair(cam.x, cam.x + cam.w);
+
+	pair<int, int> y1 = make_pair(map.y, map.y + map.h);
+	pair<int, int> y2 = make_pair(cam.y, cam.y + cam.h);
+
+	bool o1 = isSameOrIn(x1, x2);
+	bool o2 = isSameOrIn(y1, y2);
+
+	if (o2 && o1)return true;
+	return false;
 }
 
 Physics::~Physics()

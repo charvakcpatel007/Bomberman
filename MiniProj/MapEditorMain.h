@@ -14,6 +14,6 @@ public:
 	void updateOffset() override;
 	void processInput() override;
 	ClickableMap curMap;
-	
+	int margin;
 };
 

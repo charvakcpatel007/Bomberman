@@ -47,6 +47,7 @@ void ClickableMap::update()
 {
 	setCurTile();
 	processClick();
+	processHotkeyPress();
 }
 
 void ClickableMap::processClick()
@@ -95,6 +96,50 @@ ClickableMap::~ClickableMap()
 {
 }
 
+
+void ClickableMap::processHotkeyPress()
+{
+	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+	int preState = mapData[curTile.first][curTile.second];
+	cout << isBombermanPresent << endl;
+	if (curTile.first == 0 || curTile.first == mapData.size() - 1)
+	{
+		return;
+	}
+	if (curTile.second == 0 || curTile.second == mapData[0].size() - 1)
+	{
+		return;
+	}
+	if (currentKeyStates[SDL_SCANCODE_1])
+	{
+		mapData[curTile.first][curTile.second] = OPEN;
+		if (preState == BOMBERMAN)isBombermanPresent = false;
+	}
+	else if (currentKeyStates[SDL_SCANCODE_2])
+	{
+		mapData[curTile.first][curTile.second] = BRICK;
+		if (preState == BOMBERMAN)isBombermanPresent = false;
+	}
+	else if (currentKeyStates[SDL_SCANCODE_3])
+	{
+		mapData[curTile.first][curTile.second] = BLOCK;
+		if (preState == BOMBERMAN)isBombermanPresent = false;
+	}
+	else if (currentKeyStates[SDL_SCANCODE_4])
+	{
+		if ( !isBombermanPresent )
+		{
+			mapData[curTile.first][curTile.second] = BOMBERMAN;
+			isBombermanPresent = true;
+		}
+			
+	}
+	else if (currentKeyStates[SDL_SCANCODE_5])
+	{
+		mapData[curTile.first][curTile.second] = ENEMY;
+		if (preState == BOMBERMAN)isBombermanPresent = false;
+	}
+}
 
 void ClickableMap::setImage(const char* path)
 {
@@ -153,5 +198,24 @@ void ClickableMap::expandColoumn()
 	for (int i = 0; i < mapData.size(); i++ )
 	{
 		mapData[i].push_back(BLOCK);
+	}
+}
+
+void ClickableMap::contractRow()
+{
+	mapData.pop_back();
+	vector<int> &temp = mapData.back();
+	for (int i = 0; i < temp.size(); i++ )
+	{
+		temp[i] = BLOCK;
+	}
+}
+
+void ClickableMap::contractColoumn()
+{
+	for (int i = 0; i < mapData.size(); i++)
+	{
+		mapData[i].pop_back();
+		mapData[ i ].back() = BLOCK;
 	}
 }
