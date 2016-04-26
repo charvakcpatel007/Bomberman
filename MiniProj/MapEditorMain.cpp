@@ -14,6 +14,7 @@ MapEditorMain::MapEditorMain()
 	curMap.setUpCollider();
 	curMap.isMousePressed = false;
 	margin = 10;
+	drawoffsetSpeed = 15;
 }
 
 

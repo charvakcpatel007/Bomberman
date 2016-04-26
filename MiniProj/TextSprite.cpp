@@ -1,9 +1,12 @@
 #include "TextSprite.h"
+#include "MouseHandler.h"
+#include "Physics.h"
 
 
 TextSprite::TextSprite()
 {
-	pos = { 0, 0, 100, 100 };
+	pos = { 100, 100, 100, 100 };
+	highLightThickness = 5;
 }
 
 void TextSprite::setImage(const char* text)
@@ -37,6 +40,36 @@ void TextSprite::draw( SDL_Color c)
 void TextSprite::draw( )
 {
 	SDL_RenderCopy(renderer, image, nullptr, &pos);
+}
+
+void TextSprite::update()
+{
+
+}
+
+void TextSprite::hightLight()
+{
+	SDL_Rect drawRect = pos;
+	SDL_SetRenderDrawColor(renderer, 0, 0, 250, 1);
+	for (int i = 0; i < highLightThickness; i++)
+	{
+		drawRect.x--;
+		drawRect.y--;
+		drawRect.w += 2;
+		drawRect.h += 2;
+		SDL_RenderDrawRect(renderer, &drawRect);
+	}
+}
+
+bool TextSprite::isClicked()
+{
+	SDL_Rect mouseRect = MouseHandler::getPositionRectangle();
+	if ( Physics::checkCollision( mouseRect, pos ) && MouseHandler::isLeftDown() )
+	{
+		return true;
+	}
+	return false;
+	
 }
 
 TextSprite::~TextSprite()

@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 	cout << "Enter Choice : ";
 	int choice;
 	//cin >> choice;
-	switch (2)
+	switch (1)
 	{
 	case 1:
 		{

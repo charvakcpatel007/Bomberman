@@ -11,9 +11,12 @@ public:
 
 	void render() override;
 	void update() override;
-	void updateOffset() override;
+	void updateOffset();
 	void processInput() override;
 	ClickableMap curMap;
 	int margin;
+	pair<int, int> drawOffset;// x offset first, y offset second
+	int drawoffsetSpeed;
+
 };
 

@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 #include<SDL.h>
 #include<SDL_image.h>
 #include "Timer.h"
@@ -25,7 +25,6 @@ class BasicGame
 public:
 	BasicGame();
 	virtual ~BasicGame();
-	virtual void updateOffset() = 0;
 
 	void run();
 	void gameLoop();
@@ -43,9 +42,7 @@ protected:
 	float desiredTime;
 	bool vsync;
 	SDL_Renderer* renderer;
-	int tileSizeDest = 10;
-	pair<int, int> drawOffset;// x offset first, y offset second
-	int drawoffsetSpeed;
+	int tileSizeDest;
 	pair<int, int> dimension;// width hight
 	TTF_Font* gFont;
 	bool isFullScreen;

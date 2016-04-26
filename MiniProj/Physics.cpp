@@ -66,6 +66,22 @@ bool Physics::checkCollision(const vector<vector<SDL_Rect>>& map, const SDL_Rect
 	return false;
 }
 
+bool Physics::checkCollision(const vector<vector<SDL_Rect*>>& map, const SDL_Rect& pos)
+{
+	for (int i = 0; i < map.size(); i++)
+	{
+		for (int j = 0; j < map[i].size(); j++)
+		{
+			if (map[i][j]->w == 0)continue;
+			if (Physics::checkCollision(pos, *map[i][j]))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 pair<int, int> Physics::getCellPosition( const SDL_Rect &pos, int tileSizeDest)//First -> X, Second-> Y
 {
 	int posX = pos.x + pos.w / 2;

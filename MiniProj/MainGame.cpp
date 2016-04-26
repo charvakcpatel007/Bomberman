@@ -13,20 +13,11 @@ using namespace std;
 MainGame::MainGame()
 {
 	tileSizeDest = 70;
-	bomberman.tileSizeDest = MainGame::tileSizeDest;
-	enemies.tileSizeDest = MainGame::tileSizeDest;
-
-	bomberman.setRenderer(renderer);
-	bomberman.setImage("res//george.png");
-	bomberman.screenDimension = dimension;
-	enemies.setRenderer(renderer);
-	enemies.setImage("res//spritesheetBalloon.png");
 	loadMaps();
-	maps[0].drawOffsetPtr = &drawOffset;
-	enemies.drawOffsetPtr = &drawOffset;
-	
-	bomberman.init(maps[0]);
-	enemies.init(maps[0]);
+	mainMenu.init(window, windowSurface, renderer, tileSizeDest, dimension);
+	mainMenu.gFont = gFont;
+	mss.tileSizeDest = MainGame::tileSizeDest;
+	mss.init(window, windowSurface, renderer, tileSizeDest, dimension, maps[1]);
 }
 
 void MainGame::loadMaps()
@@ -49,8 +40,11 @@ void MainGame::loadMaps()
 
 void MainGame::updateOffset()
 {
-	drawOffset = make_pair( dimension.first / 2 - bomberman.pos.x, dimension.second / 2 - bomberman.pos.y );
+	
+	
 }
+
+
 
 void MainGame::loadRes()
 {
@@ -59,24 +53,14 @@ void MainGame::loadRes()
 
 void MainGame::update()
 {
-	
-	bomberman.update();
-	enemies.update();
-	updateOffset();
-	//e.update();
+	mainMenu.update();
+	//mss.update();
 }
 
 void MainGame::render()
 {
-	/*for (int i = 0; i < maps.size(); i++)
-	{
-		maps[i].draw();
-	}*/
-	maps[ 0 ].draw();
-	//SDL_RenderDrawRect(renderer, &bomberman.pos);
-	bomberman.draw();
-	enemies.draw();
-	//e.draw();
+	mainMenu.render();
+	//mss.render();
 }
 
 

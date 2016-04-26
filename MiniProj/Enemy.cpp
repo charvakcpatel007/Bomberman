@@ -42,12 +42,14 @@ void Enemy::init(Map& m)
 void Enemy::turnRandom()
 {
 	pair<int,int> cellPos = Physics::getCellPosition(pos, tileSizeDest);
-
+	
 	int num_random = 1+ rand() % 100;
+	
 	if ( SDL_GetTicks() - startTime < duration )
 	{
 		return;
 	}
+	
 	if ( num_random > turnChance )//50% chance that it is gonna turn
 	{
 		num_random = 1 + rand() % 100;//50% chance that it will turn left, rest for right
@@ -101,6 +103,7 @@ void Enemy::update()
 	}
 
 	turnRandom();
+	
 }
 
 void Enemy::setDefaultSrcRect()

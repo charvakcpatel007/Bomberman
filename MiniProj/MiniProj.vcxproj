@@ -80,10 +80,13 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapEditorMain.cpp" />
+    <ClCompile Include="MapShowScene.cpp" />
     <ClCompile Include="MouseHandler.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TextSprite.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
@@ -98,10 +101,13 @@
     <ClInclude Include="GenericCharacter.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapEditorMain.h" />
+    <ClInclude Include="MapShowScene.h" />
     <ClInclude Include="MouseHandler.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="TextSprite.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>

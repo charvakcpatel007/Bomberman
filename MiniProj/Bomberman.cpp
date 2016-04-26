@@ -53,7 +53,6 @@ void Bomberman::init( Map& m )
 		}
 	}
 	
-	
 	strip = 2;
 	rate = 2.0f;
 	curPosition = 0;
@@ -73,7 +72,9 @@ void Bomberman::init( Map& m )
 void Bomberman::update()
 {
 	SDL_Rect previousState = pos;
+	
 	const Uint8* curKeyStates = SDL_GetKeyboardState(NULL);
+	
 	if (curKeyStates[ SDL_SCANCODE_UP ] )
 	{
 		pos.y -= moveSpeed;
@@ -106,11 +107,11 @@ void Bomberman::update()
 	{
 		isPlaying = false;
 	}
-	
 	if (Physics::checkCollision( map->mapCollider, pos ))
 	{
 		pos = previousState;
 	}
+
 }
 
 void Bomberman::draw()

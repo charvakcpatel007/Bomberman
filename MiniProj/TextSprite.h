@@ -10,6 +10,9 @@ public:
 	void updateImage();
 	void draw(  SDL_Color c);
 	void draw();
+	void update();
+	void hightLight();
+	bool isClicked();
 	~TextSprite();
 	const char* text;
 	SDL_Color textColor;
@@ -17,5 +20,6 @@ public:
 	SDL_Renderer* renderer;
 	SDL_Texture* image;
 	TTF_Font* gFont;
+	int highLightThickness;
 };
 

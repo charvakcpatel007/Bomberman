@@ -10,6 +10,8 @@
 #include "FileHandler.h"
 #include "EnemyColletion.h"
 #include "BasicGame.h"
+#include "MapShowScene.h"
+#include "MainMenuScene.h"
 using namespace std;
 
 class MainGame : public BasicGame
@@ -25,9 +27,11 @@ public:
 	void loadMaps();
 	
 	vector< Map > maps;
-	void updateOffset();
+	virtual void updateOffset();
+	MapShowScene mss;
+	MainMenuScene mainMenu;
+	
 private:
-	Bomberman bomberman;
-	EnemyColletion enemies;
+	
 };
 

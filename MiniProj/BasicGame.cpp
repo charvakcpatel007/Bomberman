@@ -18,7 +18,6 @@ BasicGame::BasicGame()
 	desiredfps = 60;
 	desiredTime = 1000.0f / desiredfps;
 	gameState = GameState::PLAY;
-	drawoffsetSpeed = 15;
 }
 
 
@@ -54,7 +53,6 @@ void BasicGame::gameLoop()
 	{
 		fpsTimer.start();
 		processInput();
-		updateOffset();
 		update();
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
