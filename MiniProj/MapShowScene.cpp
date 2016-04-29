@@ -1,17 +1,16 @@
 #include "MapShowScene.h"
 
 
-void MapShowScene::init(SDL_Window* w, SDL_Surface* s, SDL_Renderer* r, int tsd, pair<int,int> d, Map &m)
+void MapShowScene::init(SDL_Window* w, SDL_Surface* s, SDL_Renderer* r, int tsd, pair<int,int> d, Map *m, TTF_Font* gF)
 {
-	Scene::init(w, s, r, tileSizeDest, d);
-	curMap = &m;
+	Scene::init(w, s, r, tileSizeDest, d,gF);
+	curMap = m;
 	bomberman.tileSizeDest = tileSizeDest;
 	enemies.tileSizeDest = tileSizeDest;
-	cout << enemies.tileSizeDest << endl;
 
 	bomberman.setRenderer(renderer);
 	bomberman.setImage("res//george.png");
-	bomberman.map = &m;
+	bomberman.map = m;
 	bomberman.screenDimension = dimension;
 	enemies.setRenderer(renderer);
 	enemies.setImage("res//spritesheetBalloon.png");
@@ -21,6 +20,7 @@ void MapShowScene::init(SDL_Window* w, SDL_Surface* s, SDL_Renderer* r, int tsd,
 	bomberman.init(m);
 	enemies.init(m);
 }
+
 
 void MapShowScene::update()
 {
@@ -72,3 +72,4 @@ void MapShowScene::checkEnemies_Bomberman()
 MapShowScene::~MapShowScene()
 {
 }
+

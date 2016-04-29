@@ -7,7 +7,7 @@ class MapShowScene :
 	public Scene
 {
 public:
-	virtual void init(SDL_Window* w, SDL_Surface* s, SDL_Renderer* r, int tileSizeDest, pair<int,int> d, Map &map);
+	virtual void init(SDL_Window* w, SDL_Surface* s, SDL_Renderer* r, int tileSizeDest, pair<int,int> d, Map *map, TTF_Font* gF);
 	virtual void update() override;
 	virtual void render() override;
 	virtual void updateOffset() override;

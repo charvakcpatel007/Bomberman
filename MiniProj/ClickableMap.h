@@ -11,7 +11,7 @@ public:
 	pair<int, int> curTile;//First is row and Second is coloumn
 	void processClick();
 	void processDrag();
-	~ClickableMap() ;
+	virtual ~ClickableMap() ;
 	int highLightThickness;
 	bool isMousePressed;
 	Image bomberman;

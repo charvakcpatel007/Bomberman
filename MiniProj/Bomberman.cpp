@@ -28,9 +28,9 @@ pair<int, int> Bomberman::getPositionFromMap()
 	return p;
 }
 
-void Bomberman::init( Map& m )
+void Bomberman::init( Map* m )
 {
-	map = &m;
+	map = m;
 	pair<int,int> p = getPositionFromMap();
 	int startR = p.first;
 	int startC = p.second;
@@ -133,6 +133,7 @@ void Bomberman::setDefaultSrcRect()
 
 Bomberman::~Bomberman()
 {
+	cout << "i got called" << endl;
 }
 
 

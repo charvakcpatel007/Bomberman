@@ -5,7 +5,7 @@ class EnemyColletion
 public:
 	EnemyColletion();
 	vector<Enemy> enemyList;
-	void init( Map &m );
+	void init( Map *m );
 	void update();
 	void draw();
 	virtual ~EnemyColletion();

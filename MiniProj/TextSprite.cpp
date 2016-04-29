@@ -6,10 +6,12 @@
 TextSprite::TextSprite()
 {
 	pos = { 100, 100, 100, 100 };
-	highLightThickness = 5;
+	highLightThickness = 2;
+	isClickedVar = false;
+	mouseClickData = make_pair( 1, 1 );
 }
 
-void TextSprite::setImage(const char* text)
+void TextSprite::setText(const char* text)
 {
 	TextSprite::text = text;
 	updateImage();
@@ -42,9 +44,15 @@ void TextSprite::draw( )
 	SDL_RenderCopy(renderer, image, nullptr, &pos);
 }
 
+void TextSprite::updateMouseData()
+{
+	mouseClickData.first = mouseClickData.second;
+	mouseClickData.second = isCurrentlyClicked();
+}
+
 void TextSprite::update()
 {
-
+	updateMouseData();
 }
 
 void TextSprite::hightLight()
@@ -61,7 +69,26 @@ void TextSprite::hightLight()
 	}
 }
 
-bool TextSprite::isClicked()
+void TextSprite::hightLightIfMouseHover()
+{
+	SDL_Rect mouseRect = MouseHandler::getPositionRectangle();
+	if (Physics::checkCollision(mouseRect, pos))
+	{
+		hightLight();
+	}
+}
+
+bool TextSprite::isMouseHover()
+{
+	SDL_Rect mouseRect = MouseHandler::getPositionRectangle();
+	if (Physics::checkCollision(mouseRect, pos) )
+	{
+		return true;
+	}
+	return false;
+}
+
+bool TextSprite::isCurrentlyClicked()
 {
 	SDL_Rect mouseRect = MouseHandler::getPositionRectangle();
 	if ( Physics::checkCollision( mouseRect, pos ) && MouseHandler::isLeftDown() )
@@ -72,6 +99,19 @@ bool TextSprite::isClicked()
 	
 }
 
+bool TextSprite::isClicked()
+{
+	SDL_Rect mouseRect = MouseHandler::getPositionRectangle();
+	if (Physics::checkCollision(mouseRect, pos) && mouseClickData.first == 0 && mouseClickData.second == 1)
+	{
+		return true;
+	}
+	return false;
+}
+
 TextSprite::~TextSprite()
 {
+	SDL_DestroyTexture(image);
 }
+
+

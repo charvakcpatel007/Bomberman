@@ -12,6 +12,7 @@
 #include "BasicGame.h"
 #include "MapShowScene.h"
 #include "MainMenuScene.h"
+#include "PauseMenuScene.h"
 using namespace std;
 
 class MainGame : public BasicGame
@@ -26,11 +27,16 @@ public:
 	void render();
 	void loadMaps();
 	
-	vector< Map > maps;
+	Map *curMap;
+	int curMapIndex;
 	virtual void updateOffset();
-	MapShowScene mss;
+	MapShowScene *mss;
 	MainMenuScene mainMenu;
-	
+	PauseMenuScene pauseMenu;
+	vector<string> mapNames;
+	void loadMap(string &mapName);
+	void transition_MainMenu_MapShow();
+	void transition_MapShow_MainMenu();	
 private:
 	
 };

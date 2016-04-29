@@ -18,11 +18,14 @@ BasicGame::BasicGame()
 	desiredfps = 60;
 	desiredTime = 1000.0f / desiredfps;
 	gameState = GameState::PLAY;
+	mouseClickData = make_pair(0, 0);
 }
 
 
 BasicGame::~BasicGame()
 {
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 }
 
 void BasicGame::run()
@@ -46,6 +49,15 @@ bool BasicGame::isCamInLimit(pair<int, int> drawOffset, Map& curMap)
 	return false;
 }
 
+bool BasicGame::isClicked()
+{
+	if (mouseClickData.first == 0 && mouseClickData.second == 1)
+	{
+		return true;
+	}
+	return false;
+}
+
 void BasicGame::gameLoop()
 {
 	fpsTimer.stop();
@@ -53,6 +65,8 @@ void BasicGame::gameLoop()
 	{
 		fpsTimer.start();
 		processInput();
+		mouseClickData.first = mouseClickData.second;
+		mouseClickData.second = MouseHandler::isLeftDown();
 		update();
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);

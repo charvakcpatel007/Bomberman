@@ -8,12 +8,12 @@ class Bomberman : public GenericCharacter
 {
 public:
 	Bomberman();
-	virtual void init(Map &m) override;
+	virtual void init(Map *m) override;
 	virtual void update() override;
 	virtual void draw() override;
 	pair<int, int> screenDimension;
 	virtual void setDefaultSrcRect();
-	~Bomberman();
+	virtual ~Bomberman() override;
 private:
 	pair<int,int> getPositionFromMap();
 };

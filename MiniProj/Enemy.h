@@ -10,11 +10,11 @@ class Enemy : public GenericCharacter
 {
 public:
 	Enemy();
-	virtual void init(Map &m) override;
+	virtual void init(Map *m) override;
 	void turnRandom();
 	void update() override;
 	void setDefaultSrcRect();
-	~Enemy();
+	virtual ~Enemy();
 	int startC;
 	int startR;
 	pair<int, int> direction;//first represents X Second represents Y 

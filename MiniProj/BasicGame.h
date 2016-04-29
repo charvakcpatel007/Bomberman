@@ -31,11 +31,13 @@ public:
 	virtual void processInput() = 0;
 	virtual void update() = 0;
 	virtual void render() = 0;
+	GameState gameState;
+	bool isClicked();
 protected:
 	SDL_Window* window;
 	SDL_Surface* windowSurface;
 	SDL_Event* evnt;
-	GameState gameState;
+	
 	Timer fpsTimer;
 	float fps;
 	int desiredfps;
@@ -46,6 +48,8 @@ protected:
 	pair<int, int> dimension;// width hight
 	TTF_Font* gFont;
 	bool isFullScreen;
-	bool isCamInLimit(pair<int, int> drawOffset, Map& curMap);
+	bool isCamInLimit(pair<int, int> drawOffset, Map& curMap); 
+	pair<int, int> mouseClickData;
+	
 };
 

@@ -14,15 +14,15 @@ void EnemyColletion::addEnemy(int row, int coloumn)
 	e.tileSizeDest = tileSizeDest;
 	e.setRenderer(renderer);
 	e.setImage(imagePath);
-	e.init( *map );
+	e.init( map );
 	e.drawOffsetPtr = drawOffsetPtr;
 
 }
 
-void EnemyColletion::init(Map& m)
+void EnemyColletion::init(Map* m)
 {
-	map = &m;
-	vector< vector<int> > mapData = m.mapData;
+	map = m;
+	vector< vector<int> > mapData = m->mapData;
 	for (int i = 0; i < mapData.size(); i++ )
 	{
 		for (int j = 0; j < mapData[i].size(); j++ )

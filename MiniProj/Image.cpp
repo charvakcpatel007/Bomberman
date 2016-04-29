@@ -22,6 +22,7 @@ void Image::draw()
 
 Image::~Image()
 {
+	SDL_DestroyTexture(image);
 }
 
 void Image::setImage( const char* path )

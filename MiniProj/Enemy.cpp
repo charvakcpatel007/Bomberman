@@ -9,9 +9,9 @@ Enemy::Enemy()
 	setDefaultSrcRect();
 }
 
-void Enemy::init(Map& m)
+void Enemy::init(Map* m)
 {
-	map = &m;
+	map = m;
 	srcTileX = 76;
 	srcTileY = 121;
 	int newHeight = 100;

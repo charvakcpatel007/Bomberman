@@ -24,7 +24,7 @@ Animation::Animation( SDL_Renderer* r, const char* path)
 
 Animation::~Animation()
 {
-
+	SDL_DestroyTexture(image);
 }
 
 int Animation::getCurFrame()
