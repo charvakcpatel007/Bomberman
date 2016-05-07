@@ -6,11 +6,12 @@
 #include "GenericCharacter.h"
 #include "Timer.h"
 
+
 class Enemy : public GenericCharacter
 {
 public:
 	Enemy();
-	virtual void init(Map *m) override;
+	virtual void init(MapShowScene *m)override;
 	void turnRandom();
 	void update() override;
 	void setDefaultSrcRect();
@@ -21,6 +22,7 @@ public:
 	int turnChance;
 	int startTime;
 	int duration;
+	bool isDead;
 	pair<int,int> getLeft();
 	pair<int,int> getRight();
 private:

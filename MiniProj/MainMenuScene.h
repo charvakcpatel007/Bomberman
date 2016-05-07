@@ -33,6 +33,7 @@ public:
 	TextSprite playButton;
 	int *curSelectedMap;
 	bool isSelectingMap;
+
 private:
 	void initTexts();
 	

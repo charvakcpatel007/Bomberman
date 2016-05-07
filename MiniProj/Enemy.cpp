@@ -2,6 +2,7 @@
 #include "Physics.h"
 #include <ctime>
 #include <SDL.h>
+#include "MapShowScene.h"
 
 
 Enemy::Enemy()
@@ -9,9 +10,9 @@ Enemy::Enemy()
 	setDefaultSrcRect();
 }
 
-void Enemy::init(Map* m)
+void Enemy::init(MapShowScene* m)
 {
-	map = m;
+	mms = m;
 	srcTileX = 76;
 	srcTileY = 121;
 	int newHeight = 100;
@@ -37,6 +38,7 @@ void Enemy::init(Map* m)
 	pos.y += collideroffset;
 	pos.w = tileSizeDest - collideroffset * 2;
 	pos.h = tileSizeDest - collideroffset * 2;
+	isDead = false;
 }
 
 void Enemy::turnRandom()
@@ -62,7 +64,7 @@ void Enemy::turnRandom()
 			SDL_Rect nextPos = pos;
 			nextPos.x = nextX;
 			nextPos.y = nextY;
-			if (!Physics::checkCollision(map->mapCollider, nextPos))
+			if (!Physics::checkCollision(mms->curMap->mapCollider, nextPos))
 			{
 				direction = nextDir;
 			}
@@ -76,7 +78,7 @@ void Enemy::turnRandom()
 			SDL_Rect nextPos = pos;
 			nextPos.x = nextX;
 			nextPos.y = nextY;
-			if (!Physics::checkCollision(map->mapCollider, nextPos))
+			if (!Physics::checkCollision(mms->curMap->mapCollider, nextPos))
 			{
 				direction = nextDir;
 			}
@@ -92,17 +94,32 @@ void Enemy::update()
 	Animation::update();
 	SDL_Rect previousState = pos;
 	
-	pos.x += moveSpeed * direction.first;
-	pos.y += moveSpeed * direction.second;
+	if (!isPlaying)//If not going to die 
+	{
+		pos.x += moveSpeed * direction.first;
+		pos.y += moveSpeed * direction.second;
+	}
+	
 
-	if (Physics::checkCollision(map->mapCollider, pos))
+	if (Physics::checkCollision(mms->curMap->mapCollider, pos))
 	{
 		pos = previousState;
 		direction.first = -direction.first;
 		direction.second = -direction.second;
 	}
 
+	if ( mms->bomb != nullptr && mms->bomb->getInteraction(*this) == BombCharStatus::COLLISION )
+	{
+		pos = previousState; 
+		direction.first = -direction.first;
+		direction.second = -direction.second;
+	}
+
 	turnRandom();
+	if (getCurFrame() == noOfFrames - 1 )
+	{
+		isDead = true;
+	}
 	
 }
 

@@ -35,6 +35,10 @@ int Animation::getCurFrame()
 
 void Animation::update()
 {
+	if ( !isPlaying )
+	{
+		return;
+	}
 	curPosition += rate;
 	if (curPosition >= 100)curPosition -= 100;
 }

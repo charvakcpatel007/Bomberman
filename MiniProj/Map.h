@@ -27,6 +27,7 @@ public:
 	
 	vector< vector<int> > mapData;
 	vector< vector<SDL_Rect> > mapCollider;
+	void destoryTile(int row, int coloumn);
 	virtual void draw();
 	Map();
 	void setUpCollider();

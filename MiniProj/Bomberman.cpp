@@ -13,7 +13,7 @@ Bomberman::Bomberman()
 pair<int, int> Bomberman::getPositionFromMap()
 {
 	pair<int, int> p;
-	vector< vector<int> > &d = map->mapData;
+	vector< vector<int> > &d = mms->curMap->mapData;
 	for (int i = 0; i < d.size(); i++)
 	{
 		for (int j = 0; j < d[i].size(); j++)
@@ -28,9 +28,9 @@ pair<int, int> Bomberman::getPositionFromMap()
 	return p;
 }
 
-void Bomberman::init( Map* m )
+void Bomberman::init( MapShowScene* m )
 {
-	map = m;
+	mms = m;
 	pair<int,int> p = getPositionFromMap();
 	int startR = p.first;
 	int startC = p.second;
@@ -107,11 +107,10 @@ void Bomberman::update()
 	{
 		isPlaying = false;
 	}
-	if (Physics::checkCollision( map->mapCollider, pos ))
+	if (Physics::checkCollision( mms->curMap->mapCollider, pos ))
 	{
 		pos = previousState;
 	}
-
 }
 
 void Bomberman::draw()

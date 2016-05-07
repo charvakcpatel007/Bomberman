@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="BasicGame.cpp" />
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Bomberman.cpp" />
     <ClCompile Include="ClickableMap.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -94,6 +95,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BasicGame.h" />
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="Bomberman.h" />
     <ClInclude Include="ClickableMap.h" />
     <ClInclude Include="Enemy.h" />
@@ -109,9 +111,13 @@
     <ClInclude Include="MouseHandler.h" />
     <ClInclude Include="PauseMenuScene.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="TextSprite.h" />
     <ClInclude Include="Timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MiniProj.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

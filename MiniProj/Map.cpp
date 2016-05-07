@@ -44,6 +44,14 @@ void Map::setUpCollider()
 }
 
 
+void Map::destoryTile(int row, int coloumn)
+{
+	if (mapData[row][coloumn] == BRICK )
+	{
+		mapData[row][coloumn] = OPEN;
+		mapCollider[row][coloumn].w = mapCollider[row][coloumn].h = 0;
+	}
+} 
 
 void Map::draw()
 {
@@ -65,6 +73,7 @@ void Map::draw()
 			//src and pos
 			//In order to draw the whole map, for each code in mapData we are just changing the src and pos
 			//Image::draw();
+			//SDL_RenderCopy(renderer, image, &src, &pos);
 			SDL_RenderCopy(renderer, image, &src, &pos);
 			//SDL_RenderDrawRect(renderer, &mapCollider[ i ][ j ]);
 			

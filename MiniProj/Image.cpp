@@ -6,7 +6,7 @@ using namespace std;
 
 Image::Image()
 {
-
+	angle = 0;
 }
 
 Image::Image(SDL_Renderer* r, const char* path)
@@ -17,7 +17,13 @@ Image::Image(SDL_Renderer* r, const char* path)
 
 void Image::draw()
 {
-	SDL_RenderCopy(renderer, image, &src, &pos);
+	SDL_RenderCopyEx( renderer, image, &src, &pos, angle, NULL, SDL_FLIP_NONE );
+}
+
+void Image::draw(double angle)
+{
+	this->angle = angle;
+	draw();
 }
 
 Image::~Image()

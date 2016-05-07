@@ -13,8 +13,8 @@ int main(int argc, char* argv[])
 	cout << "2. Map Editor" << endl;
 	cout << "Enter Choice : ";
 	int choice;
-	//cin >> choice;
-	switch (1)
+	cin >> choice;
+	switch (choice)
 	{
 	case 1:
 		{

@@ -2,6 +2,14 @@
 #include "Scene.h"
 #include "EnemyColletion.h"
 #include "Bomberman.h"
+#include "Bomb.h"
+
+enum MapShowState
+{
+	GAME_RUNNING,
+	GAME_SUCCESS,
+	GAME_OVER
+};
 
 class MapShowScene :
 	public Scene
@@ -15,8 +23,15 @@ public:
 	Bomberman bomberman;
 	EnemyColletion enemies;
 	void checkEnemies_Bomberman();
+	void checkBomb_Char();
+	Bomb *bomb;
 	Map *curMap;
 	MapShowScene();
+	void putBomb();
 	~MapShowScene();
+	MapShowState mapShowState;
+	TextSprite statusString;
+	int s_timeLeft;
+	int timeLeft;
 };
 

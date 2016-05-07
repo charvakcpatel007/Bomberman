@@ -10,9 +10,11 @@ public:
 	Image();
 	Image(SDL_Renderer* r, const char* filePath);
 	virtual void draw();
+	virtual void draw( double angle );
 	virtual void setImage( const char* path );
 	virtual	void setRenderer( SDL_Renderer* r );
 	~Image();
+	double angle;
 	SDL_Rect src;
 	SDL_Rect pos;
 	SDL_Renderer* renderer;

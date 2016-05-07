@@ -1,11 +1,13 @@
 #pragma once
 #include "Enemy.h"
+#include <list>
+
 class EnemyColletion
 {
 public:
 	EnemyColletion();
-	vector<Enemy> enemyList;
-	void init( Map *m );
+	list<Enemy> enemyList;
+	void init( MapShowScene *m );
 	void update();
 	void draw();
 	virtual ~EnemyColletion();
@@ -15,7 +17,7 @@ public:
 	SDL_Renderer* renderer;
 	const char* imagePath;
 	pair<int, int> *drawOffsetPtr;
-	Map* map;
+	MapShowScene* mms;
 private:
 	void addEnemy( int row, int coloumn );
 };

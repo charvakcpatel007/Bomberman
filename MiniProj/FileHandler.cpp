@@ -54,7 +54,7 @@ void FileHandler::vec2DToFile(vector<vector<int>>& A)
 {
 	int r = A.size();
 	int c = A[0].size();
-	string fileName = "Map";
+	string fileName = "maps//Map";
 	long long int t = time(0);
 	for (int i = 0; i < 5; i++ )
 	{
